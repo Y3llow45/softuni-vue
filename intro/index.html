@@ -12,9 +12,14 @@
         <h1>{{age}}</h1>-->
         <!--<input v-on:click="changeTitle"/>-->
         <!--<button v-on:click="changeTitle">Change title</button>-->
-        <input v-bind:value="title" v-on:input="changeTitle" />
-        <input v-model="title" />
+        <input :value="title" @input="changeTitle" />
+        <!--<input v-model="title" />-->
+        <img :src="imageURL" alt="" style="height: 100px;">
+        <a :href="siteURL">Click here</a>
         {{title}}
+        {{isValid}}
+        {{reverseName}}
+        <p v-if="isValid">aaaaaa</p>
     </div>
     <script>
         const vm = new Vue({
@@ -22,6 +27,10 @@
             data: {
                 title: 'Hello fr',
                 age: -3,
+                imageURL: 'https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fcdn.freebiesupply.com%2Flogos%2Flarge%2F2x%2Fvue-9-logo-png-transparent.png&f=1&nofb=1&ipt=55e4463d4d4dc13574f2f917e34bc671f97b633539fbad43fb57cb11db92aeff&ipo=images',
+                siteURL: 'https://www.softuni.bg',
+                isValid: false,
+                firstName: 'Borky'
             },
             methods: {
                 changeTitle(e) {
@@ -30,6 +39,15 @@
                     this.title = newValue;
                 }
             },
+            computed: {
+                isValid() {
+                    this.firstName = "Somet else"
+                    return this.isValid ? "Valid" : "Invalid"
+                },
+                reverseName() {
+                    return this.firstName.split('').reverse().join("");
+                }
+            }
         })
     </script>
 </body>
