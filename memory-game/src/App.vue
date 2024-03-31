@@ -1,9 +1,9 @@
 <template>
   <div id="app">
     <button @click="start" class="btn-start">Play memo game</button>
-    <img src="Next.png" :class="{ 'card': true, 'flipped': isFlipped }" />
-    <div class="grid">
-      <Card v-for="c in 16" :key="c" :c="c" />
+    <!--<img src="Next.png" :class="{ 'card': true, 'flipped': isFlipped }" />-->
+    <div v-if="shuffledNumbers.length > 0" class="grid">
+      <Card v-for="(number, index) in shuffledNumbers" :key="index" :number="number" />
     </div>
   </div>
 </template>
@@ -21,12 +21,22 @@ export default {
   },
   data() {
     return {
-      isFlipped: false
+      isFlipped: false,
+      shuffledArray: [],
     };
   },
   methods: {
+    shuffleArray(array) {
+      for (let i = array.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]];
+      }
+        return array;
+    },
     start() {
       this.isFlipped = !this.isFlipped;
+      this.shuffledArray = this.shuffleArray([1,2,3,4,5,6,7,8,1,2,3,4,5,6,7,8]);
+      console.log(this.shuffledArray);
     }
   }
 }
@@ -62,9 +72,11 @@ export default {
   color: white;
 }
 .card {
+  transition: 0.2s;
   width: 200px;
 }
 .flipped {
+  transition: 0.2s;
   transform: rotateY(180deg);
 }
 </style>
