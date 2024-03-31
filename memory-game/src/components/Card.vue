@@ -1,6 +1,6 @@
 <template>
-  <div class="start">
-    
+  <div class="card-div">
+    <img :src='imageSrc[number-1]' :class="{ 'card': true, 'flipped': isFlipped }" />
   </div>
 </template>
 
@@ -8,11 +8,12 @@
 export default {
   name: 'Card-img',
   props: {
-    c: Number,
+    number: Number,
   },
   data() {
     return {
       isFlipped: false,
+      imageSrc: ['1.png','2.png','3.png','4.png','5.png','6.png','7.png','8.png'],
       cards: {
         1: [], 2: [], 3: [], 4: [],
         5: [], 6: [], 7: [], 8: [],
@@ -20,6 +21,8 @@ export default {
         13: [], 14: [], 15: [], 16: [],
       }
     };
+  }, methods:{
+
   }
 }
 </script>
