@@ -2,7 +2,6 @@
   <div id="app">
     <h1>Memory game</h1>
     <button @click="start" class="btn-start">Play memo game</button>
-    <!--<img src="Next.png" :class="{ 'card': true, 'flipped': isFlipped }" />-->
     <div v-if="shuffledArray.length > 0" class="grid">
       <Card v-for="(number, index) in shuffledArray" :key="index" :number="number" />
     </div>
@@ -22,7 +21,6 @@ export default {
   },
   data() {
     return {
-      isFlipped: false,
       shuffledArray: [],
     };
   },
@@ -66,25 +64,17 @@ export default {
   text-decoration: none;
   transition-duration: 0.4s;
   text-align: center;
-  margin-top: 10px;
+  margin-bottom: 50px;
 }
 .btn-start:hover {
   background-color: rgb(255, 190, 24);
   color: white;
 }
-.card {
-  transition: 0.2s;
-  width: 200px;
-}
-.flipped {
-  transition: 0.2s;
-  transform: rotateY(180deg);
-}
 .grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   grid-gap: 10px;
-  width: 80%;
+  width: 30%;
   margin: auto;
 }
 </style>

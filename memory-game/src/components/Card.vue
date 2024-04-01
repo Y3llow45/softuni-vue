@@ -1,6 +1,8 @@
 <template>
-  <div class="card-div">
-    <img :src='imageSrc[number-1]' :class="{ 'card': true, 'flipped': isFlipped }" />
+  <div class="card">
+    <!--<img :src="isFlipped ? imageSrc[number - 1] : 'back.png'" :class="{ 'card': true, 'flipped': isFlipped }" v-on:click="flip" class="front" />-->
+    <img class="front" :src="imageSrc[number - 1]" />
+    <img src="back.png" class="back" />
   </div>
 </template>
 
@@ -22,12 +24,36 @@ export default {
       }
     };
   }, methods:{
-
+    flip() {
+      this.isFlipped = !this.isFlipped;
+    }
   }
 }
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-  
+  .card-div {
+    position: relative;
+    perspective: 1000px;
+    width: 100px;
+    height: 100px;
+  }
+  .flipped {
+    transition: 0.2s;
+    transform: rotateY(180deg);
+  }
+  .card {
+    transition: 0.2s;
+    width: 100px;
+    height: 100px;
+    border: 1px rgb(186, 186, 186) solid;
+    position: absolute;
+  }
+  .back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+  }
 </style>
