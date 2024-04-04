@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <HelloWorld :heading='heading' @onChangeHeading="heading = $event" />
     <Counter />
   </div>
 </template>
@@ -14,6 +14,16 @@ export default {
   components: {
     HelloWorld,
     Counter
+  },
+  data: function() {
+    return {
+      heading: 'Vue project'
+    }
+  },
+  watch: {
+    heading(oldValue, newValue) {
+      console.log([oldValue, newValue])
+    }
   }
 }
 </script>

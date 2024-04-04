@@ -1,6 +1,7 @@
 <template>
   <div class="hello">
-    <h1>{{ msg }}</h1>
+    <h2>Change heading</h2><input type="text" :value="heading" @input="changeHeading" />
+    <h1>{{ heading }}</h1>
   </div>
 </template>
 
@@ -8,7 +9,13 @@
 export default {
   name: 'HelloWorld',
   props: {
-    msg: String
+    heading: String
+  },
+  methods: {
+    changeHeading(e) {
+      let newValue = e.target.value;
+      this.$emit('onChangeHeading', newValue)
+    }
   }
 }
 </script>
