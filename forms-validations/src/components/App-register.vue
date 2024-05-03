@@ -3,7 +3,7 @@
     <div class="form-group">
       <label for="username">Username</label>
       <input id="username" v-model="username"/>
-      <div v-if="$v.username.$error">Error</div>
+      <div v-if="$v.username.$error">Invalid username</div>
     </div>
     <button>Register</button>
   </form>
