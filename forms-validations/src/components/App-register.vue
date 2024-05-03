@@ -3,7 +3,10 @@
     <div class="form-group">
       <label for="username">Username</label>
       <input id="username" v-model="username"/>
-      <div v-if="$v.username.$error">Invalid username</div>
+      <template v-if="$v.username.$error">
+        <div v-if="!$v.username.required">Username is required</div>
+        <div v-else-if="!$v.username.minLength">Username should be atleast 5 characters long</div>
+      </template>
     </div>
     <button>Register</button>
   </form>
@@ -29,7 +32,7 @@ export default {
   methods: {
     submitHandler() {
       this.$v.$touch();
-      if(this.$v.$invalid) return;
+      if(this.$v.$invalid) {return;}
       console.log('Form was submitted!');
     }
   }
