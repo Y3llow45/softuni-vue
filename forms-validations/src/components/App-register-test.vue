@@ -26,7 +26,7 @@
     <button>Register</button>
   </form>
 </template>
-
+ 
 <script>
 import { validationMixin } from 'vuelidate';
 import { required, minLength } from 'vuelidate/lib/validators';
