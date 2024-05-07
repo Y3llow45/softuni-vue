@@ -6,13 +6,14 @@
 
     <p class="field field-icon">
       <label for="username"><span><i class="fas fa-user"></i></span></label>
-      <input type="text" name="username" id="username" class="error" placeholder="Mark Ulrich">
+      <input type="text" name="username" id="username" class="error" placeholder="Mark Ulrich" v-model="username" @blur="$v.username.$touch">
     </p>
 
     <!-- if error -->
-    <p class="error">
-      Full name field is invalid!
-    </p>
+    <template v-if="$v.username.$error && $v.username.$dirty">
+      <p class="error" v-if="!$v.username.required">Full name field is required!</p>
+      <p class="error" v-else-if="!$v.username.custom">Full name field is invalid!</p>
+    </template>
     <!-- end if error -->
     
     <p class="field field-icon">
@@ -65,8 +66,9 @@
 
 <script>
 import { validationMixin } from 'vuelidate';
-import { email } from 'vuelidate/lib/validators';
 import { required, minLength, sameAs } from 'vuelidate/lib/validators';
+
+const usernamePattern = /[A-Z]{1}[a-z]{2,10} [A-Z]{1}[a-z]{2,10}/s;
 
 export default {
   mixins: [validationMixin],
@@ -83,7 +85,7 @@ export default {
   validations: {
     username: {
       required,
-      minLength: minLength(5)
+      custom: value => usernamePattern.test(value)
     },
     password: {
       required,
