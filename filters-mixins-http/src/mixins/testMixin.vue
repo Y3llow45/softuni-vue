@@ -6,11 +6,11 @@ export default {
       required: true
     }
   },
-  //data() {
-  //  return {
-  //    someText: this.text
-  //  }
-  //},
+  data() {
+    return {
+      test2: 'Test2'
+    }
+  },
   computed: {
     textLength() {
       return this.text.length;

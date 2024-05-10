@@ -1,5 +1,6 @@
 <template>
   <div>
+    {{test2}}
     {{textLength}}
   </div>
 </template>
@@ -12,6 +13,16 @@ export default {
   mixins: [testMixin],
   props: {
     msg: String
+  },
+  data() {
+    return {
+      test2: 'Component test 2'
+    }
+  },
+  computed: {
+    textLength() {
+      return this.test2.length;
+    }
   }
 }
 </script>
