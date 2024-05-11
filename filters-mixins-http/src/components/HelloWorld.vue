@@ -2,6 +2,11 @@
   <div>
     {{test2}}
     {{textLength}}
+    {{user}}
+    <div v-if="showDiv" v-event:click="clickHandler"></div>
+    <button @click="toggleDiv">Toggle Div</button>
+    <button v-if="!user" @click="login">Login</button>
+    <button v-if="user" @click="logout">Log out</button>
   </div>
 </template>
 
@@ -16,12 +21,21 @@ export default {
   },
   data() {
     return {
-      test2: 'Component test 2'
+      test2: 'Component test 2',
+      showDiv: true
     }
   },
   computed: {
     textLength() {
       return this.test2.length;
+    }
+  },
+  methods: {
+    clickHandler(e) {
+      console.log(e)
+    },
+    toggleDiv() {
+      this.showDiv = !this.showDiv;
     }
   }
 }

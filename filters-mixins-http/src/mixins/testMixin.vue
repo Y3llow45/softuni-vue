@@ -8,12 +8,26 @@ export default {
   },
   data() {
     return {
-      test2: 'Test2'
+      test2: 'Test2',
+      user: null
     }
   },
   computed: {
     textLength() {
       return this.text.length;
+    }
+  },
+  methods: {
+    login(email, password) {
+      setTimeout(() => {
+        console.log(email,password)
+        this.user = {name: 'Bob'}
+      }, 2000)
+    },
+    logout() {
+      setTimeout(() => {
+        this.user = null
+      }, 2000)
     }
   }
 }
