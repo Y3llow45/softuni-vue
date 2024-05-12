@@ -7,10 +7,18 @@
     <button @click="toggleDiv">Toggle Div</button>
     <button v-if="!user" @click="login">Login</button>
     <button v-if="user" @click="logout">Log out</button>
+    <div>
+      <h1 v-if="isLoading">Loading...</h1>
+      <ul v-else>
+        <li v-for="user in users" :key="user.id">{{user.username}}</li>
+      </ul>
+      <button @click="loadUsers">Reload</button>
+    </div>
   </div>
 </template>
 
 <script>
+import axios from 'axios';
 import testMixin from '../mixins/testMixin.vue'
 
 export default {
@@ -22,7 +30,9 @@ export default {
   data() {
     return {
       test2: 'Component test 2',
-      showDiv: true
+      showDiv: true,
+      isLoading: false,
+      users: null
     }
   },
   computed: {
@@ -30,12 +40,25 @@ export default {
       return this.test2.length;
     }
   },
+  created() {
+    this.loadUsers();
+  },
   methods: {
     clickHandler(e) {
       console.log(e)
     },
     toggleDiv() {
       this.showDiv = !this.showDiv;
+    },
+    loadUsers() {
+      this.isLoading = true;
+      axios.get('users')
+        .then(res => {
+          if(res.status === 200) {
+            this.users = res.data;
+          }
+          this.isLoading = false;
+        })
     }
   }
 }
