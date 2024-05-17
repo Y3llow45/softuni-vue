@@ -12,6 +12,10 @@ const router = new VueRouter({
     {
       path: '/about',
       component: AboutPage
+    },
+    {
+      path: '/edit/:id',
+      component: AboutPage
     }
   ]
 })
