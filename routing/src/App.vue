@@ -15,6 +15,7 @@
 
 <script>
 import AppNavigation from './components/NavigationPage.vue'
+import userStore from './store'
 
 export default {
   name: 'App',
@@ -25,22 +26,7 @@ export default {
     console.log(this.$router, this.$route)
   },*/
   data() {
-    return {
-      users: [
-      {
-        id: 1,
-        username: 'Tosho'
-      },
-      {
-        id: 2,
-        username: 'Bob'
-      },
-      {
-        id: 3,
-        username: 'Boo'
-      }
-    ]
-  }
+    return userStore;
   },
   filters: {
     userEditLink(user) {
@@ -51,6 +37,9 @@ export default {
     $route(to, from) {
       console.log(to, from);
     }
+  },
+  mounted() {
+    userStore.loadUsers();
   }
 }
 </script>
