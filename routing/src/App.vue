@@ -25,9 +25,6 @@ export default {
   /*created() {
     console.log(this.$router, this.$route)
   },*/
-  data() {
-    return userStore;
-  },
   filters: {
     userEditLink(user) {
       return `/edit/${user.id}`;
@@ -40,6 +37,11 @@ export default {
   },
   mounted() {
     userStore.loadUsers();
+  },
+  computed: {
+    users(){
+      return userStore.users;
+    }
   }
 }
 </script>
