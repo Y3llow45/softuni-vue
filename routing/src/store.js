@@ -2,7 +2,8 @@ import Vue from 'vue'
 
 const userStore = new Vue({
   data: {
-    users: null
+    users: null,
+    loggedUser: null
   },
   methods: {
     loadUsers() {
@@ -21,6 +22,12 @@ const userStore = new Vue({
             username: 'Boo'
           }
         ]
+      }, 1000)
+    },
+    login(cb) {
+      setTimeout(() => {
+        this.user = { username: 'Ivan' }
+        cb()
       }, 1000)
     }
   }

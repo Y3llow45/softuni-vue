@@ -42,6 +42,9 @@ export default {
     users(){
       return userStore.users;
     }
+  },
+  beforeRouteEnter() {
+    console.log(this);
   }
 }
 </script>
