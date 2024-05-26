@@ -1,4 +1,4 @@
-# workshop-routing-2
+# routing-app
 
 ## Project setup
 ```
